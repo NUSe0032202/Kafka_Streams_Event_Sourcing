@@ -3,8 +3,12 @@ package com.benjamin.ang.cognizant.kafka.event.sourcing.serializerdeserializers;
 import com.benjamin.ang.cognizant.kafka.event.sourcing.aggregates.CustomerAggregate;
 import com.benjamin.ang.cognizant.kafka.event.sourcing.command.CustomerCreateCommand;
 import com.benjamin.ang.cognizant.kafka.event.sourcing.events.CustomerCreatedEvent;
+import com.benjamin.ang.cognizant.kafka.event.sourcing.events.Event;
 import org.apache.kafka.common.serialization.Serde;
 import org.apache.kafka.common.serialization.Serdes;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CustomSerdes {
 
@@ -28,6 +32,7 @@ public class CustomSerdes {
                     ,new JsonDeserializer<>(CustomerCreateCommand.class));
         }
     }
+
 
     public static Serde<CustomerCreatedEvent> Event () {
         return new CustomSerdes.EventSerde();

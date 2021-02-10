@@ -30,8 +30,8 @@ import java.util.Properties;
 import java.util.UUID;
 import java.util.function.Consumer;
 
-@SpringBootApplication
-@Controller
+//@SpringBootApplication
+//@Controller
 public class Application {
 
 	KeyValueStore<UUID,CustomerCreatedEvent> eventStore = null;

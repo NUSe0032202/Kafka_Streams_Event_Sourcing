@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class CustomerUpdatedEvent extends Event {
+public class CustomerUpdatedEvent{
     private String firstName;
     private String lastName;
     private String phoneNumber;
@@ -32,6 +32,5 @@ public class CustomerUpdatedEvent extends Event {
         this.phoneNumber = command.getPhoneNumber();
         this.email = command.getEmail();
         this.updatedAt = LocalDateTime.now();
-        this.setEventType("UPDATE_CUSTOMER");
     }
 }

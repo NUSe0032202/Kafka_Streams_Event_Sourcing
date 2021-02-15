@@ -8,7 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class CustomerCreateCommand extends Command {
+public class CustomerCreateCommand {
     private String firstName;
     private String lastName;
     private String phoneNumber;

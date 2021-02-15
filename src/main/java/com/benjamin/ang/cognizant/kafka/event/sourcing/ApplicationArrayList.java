@@ -1,13 +1,11 @@
 package com.benjamin.ang.cognizant.kafka.event.sourcing;
 
 import com.benjamin.ang.cognizant.kafka.event.sourcing.aggregates.CustomerAggregate;
-import com.benjamin.ang.cognizant.kafka.event.sourcing.command.Command;
 import com.benjamin.ang.cognizant.kafka.event.sourcing.command.CommandWrapper;
 import com.benjamin.ang.cognizant.kafka.event.sourcing.command.CustomerCreateCommand;
 import com.benjamin.ang.cognizant.kafka.event.sourcing.command.CustomerUpdateCommand;
 import com.benjamin.ang.cognizant.kafka.event.sourcing.events.CustomerCreatedEvent;
 import com.benjamin.ang.cognizant.kafka.event.sourcing.events.CustomerUpdatedEvent;
-import com.benjamin.ang.cognizant.kafka.event.sourcing.events.Event;
 import com.benjamin.ang.cognizant.kafka.event.sourcing.events.EventWrapper;
 import com.benjamin.ang.cognizant.kafka.event.sourcing.serializerdeserializers.ArrayListSerde;
 import com.benjamin.ang.cognizant.kafka.event.sourcing.serializerdeserializers.CustomSerdes;
@@ -141,6 +139,7 @@ public class ApplicationArrayList {
 	public Consumer<KStream<UUID, CommandWrapper>> commandProcessorArrayList () {
 		return input -> input.process((ProcessorSupplier<UUID,CommandWrapper>) () -> new Processor<UUID,
 				CommandWrapper>() {
+			private Gson gson = new Gson();
 
 			@Override
 			public void init(ProcessorContext processorContext) {
@@ -155,7 +154,7 @@ public class ApplicationArrayList {
 				if(command.getCommandType().equals("CREATE_COMMAND")) {
 					System.out.println("Processing create command");
 					ArrayList<EventWrapper> events = new ArrayList<>();
-					Gson gson = new Gson();
+					//Gson gson = new Gson();
 
 					EventWrapper customerCreatedEventWrapper = new EventWrapper();
 					customerCreatedEventWrapper.setEventID(UUID.randomUUID());
@@ -184,7 +183,7 @@ public class ApplicationArrayList {
 
 				if(command.getCommandType().equals("UPDATE_COMMAND")) {
 					System.out.println("Processing update command");
-					Gson gson = new Gson();
+					//Gson gson = new Gson();
 
 					EventWrapper customerUpdatedEventWrapper = new EventWrapper();
 					customerUpdatedEventWrapper.setEventID(UUID.randomUUID());

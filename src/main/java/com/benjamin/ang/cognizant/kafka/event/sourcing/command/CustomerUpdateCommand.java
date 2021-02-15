@@ -9,7 +9,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class CustomerUpdateCommand extends Command {
+public class CustomerUpdateCommand {
     private UUID   id;
     private String firstName;
     private String lastName;
